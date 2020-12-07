@@ -16,8 +16,8 @@ server = Flask(__name__)
 app = dash.Dash(__name__, server=server, external_stylesheets=[dbc.themes.SLATE],
                 suppress_callback_exceptions=True)
 app.server.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.server.config["SQLALCHEMY_DATABASE_URI"] = "postgres://sijsukdyexzkgd:d3eb93de50667df727a076329de19ad474eca375fe2cd\
-634209dc4911dfb91b4@ec2-54-163-47-62.compute-1.amazonaws.com:5432/dbi07hebtnf8ic"
+app.server.config["SQLALCHEMY_DATABASE_URI"] = "postgres://umzruzajcpnkum:786ca2f41656de2b76b4168aa6b228b8ab8f282d5fbc\
+d615586636e9f89942fe@ec2-52-22-238-188.compute-1.amazonaws.com:5432/dataut4ho9h54r"
 
 db = SQLAlchemy(app.server)
 
@@ -41,7 +41,7 @@ boto_kwargs = {
 }
 s3_client = boto3.Session(**boto_kwargs).client("s3")
 s3_resource = boto3.resource('s3')
-
+# BUCKET_NAME - DATABASE_URL
 bucket_name = 'eye-fundi-images-bucket'
 my_bucket = s3_resource.Bucket(bucket_name)
 images = []
@@ -51,8 +51,6 @@ for file in my_bucket.objects.all():
     url = s3_client.generate_presigned_url('get_object', params, ExpiresIn=3600)
     images.append({'Bucket': bucket_name, 'Key': file.key, 'ImgURL': url})
 
-# for i in images:
-#    print(i)
 # ----------------------------------------------------------------------------------------------
 df_table_content = pd.DataFrame(
     {
