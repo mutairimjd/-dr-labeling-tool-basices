@@ -16,8 +16,8 @@ server = Flask(__name__)
 app = dash.Dash(__name__, server=server, external_stylesheets=[dbc.themes.SLATE],
                 suppress_callback_exceptions=True)
 app.server.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.server.config["SQLALCHEMY_DATABASE_URI"] = "postgres://umzruzajcpnkum:786ca2f41656de2b76b4168aa6b228b8ab8f282d5fbc\
-d615586636e9f89942fe@ec2-52-22-238-188.compute-1.amazonaws.com:5432/dataut4ho9h54r"
+app.server.config["SQLALCHEMY_DATABASE_URI"] = 'postgres://umzruzajcpnkum:786ca2f41656de2b76b4168aa6b228b8ab8f282d5fbc\
+d615586636e9f89942fe@ec2-52-22-238-188.compute-1.amazonaws.com:5432/dataut4ho9h54r'
 
 db = SQLAlchemy(app.server)
 
@@ -41,7 +41,6 @@ boto_kwargs = {
 }
 s3_client = boto3.Session(**boto_kwargs).client("s3")
 s3_resource = boto3.resource('s3')
-# BUCKET_NAME - DATABASE_URL
 bucket_name = 'eye-fundi-images-bucket'
 my_bucket = s3_resource.Bucket(bucket_name)
 images = []
